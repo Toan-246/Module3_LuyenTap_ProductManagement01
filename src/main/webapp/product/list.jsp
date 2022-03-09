@@ -268,7 +268,6 @@
                             <td><a href="/products?action=view&id=${product.id}">${product.name}</a></td>
                             <td>${product.price}</td>
                             <td>${product.description}</td>
-                                <%--                <td>${category.name}</td>--%>
                             <td>
                                 <a class="btn btn-info" href="/products?action=edit&id=${product.id}">
                                     <i class="fas fa-edit"></i>

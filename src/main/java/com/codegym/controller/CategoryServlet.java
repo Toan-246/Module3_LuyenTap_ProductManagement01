@@ -1,9 +1,12 @@
 package com.codegym.controller;
 
-import com.codegym.dao.category.CategoryDao;
+import com.codegym.dao.product.ProductDao;
 import com.codegym.model.Category;
+import com.codegym.model.Product;
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
+import com.codegym.service.product.IProductService;
+import com.codegym.service.product.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,6 +17,7 @@ import java.util.List;
 @WebServlet(name = "CategoryServlet", value = "/categories")
 public class CategoryServlet extends HttpServlet {
     ICategoryService categoryService = new CategoryService();
+    IProductService productService = new ProductService(new ProductDao());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,6 +45,14 @@ public class CategoryServlet extends HttpServlet {
                 request.setAttribute("category", category);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/category/delete.jsp");
                 requestDispatcher.forward(request, response);
+                break;
+            }
+            case "view": {
+                int category_id = Integer.parseInt(request.getParameter("id"));
+                List<Product> products = productService.findAllProductByCategoryId(category_id);
+                request.setAttribute("products", products);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/category/view.jsp");
+                dispatcher.forward(request, response);
                 break;
             }
             default: {

@@ -227,7 +227,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <h1>Products Management</h1>
+                <h1>Products category Management</h1>
                 <a class="btn btn-primary float-end" href="/categories?action=create">Add New category</a>
                 <table class="table table-bordered">
                     <thead>
@@ -241,7 +241,7 @@
                     <c:forEach var="category" items="${categoryList}">
                         <tr>
                             <td>${category.id}</td>
-                            <td><a href="/category?action=view&id=${category.id}">${category.name}</a></td>
+                            <td><a href="/categories?action=view&id=${category.id}">${category.name}</a></td>
                             <td>
                                 <a class="btn btn-info" href="/categories?action=edit&id=${category.id}">
                                     <i class="fas fa-edit"></i>

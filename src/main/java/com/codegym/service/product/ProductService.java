@@ -50,4 +50,9 @@ public class ProductService implements IProductService{
         name = "%" + name + "%";
         return productDao.findProductByName(name);
     }
+
+    @Override
+    public List<Product> findAllProductByCategoryId(int category_id) {
+        return productDao.findAllProductByCategoryId(category_id);
+    }
 }
