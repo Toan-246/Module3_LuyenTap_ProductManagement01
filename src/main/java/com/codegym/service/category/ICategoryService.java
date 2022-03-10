@@ -7,4 +7,5 @@ import com.codegym.service.IGeneralService;
 import java.util.List;
 
 public interface ICategoryService extends IGeneralService <Category> {
+    Category findCategoryByProductId (int id);
 }

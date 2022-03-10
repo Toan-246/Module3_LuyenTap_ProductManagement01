@@ -28,9 +28,11 @@
         </div>
         <div class="mb-3">
             <label for="category" class="form-label">Danh mục sản phẩm</label>
-            <select  class="form-control" name="category_id" id="category">
+            <select  class="form-control" name="category_id" id="category" >
                 <c:forEach var="category" items="${categories}">
-                    <option value="${category.id}">${category.name}</option>
+                    <option value="${category.id}"
+                            <c:if test="${productCategory.id == category.id}"> selected </c:if>
+                    >${category.name}</option>
                 </c:forEach>
             </select>
 

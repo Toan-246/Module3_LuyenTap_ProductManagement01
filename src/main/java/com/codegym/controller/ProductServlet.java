@@ -36,10 +36,12 @@ public class ProductServlet extends HttpServlet {
             }
             case "edit": {
                 List<Category> categories = categoryService.findAll();
+                request.setAttribute("categories", categories);
                 int id = Integer.parseInt(request.getParameter("id"));
                 Product product = productService.findById(id);
                 request.setAttribute("product", product);
-                request.setAttribute("categories", categories);
+                Category productCategory = categoryService.findCategoryByProductId(id);
+                request.setAttribute("productCategory", productCategory);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/edit.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -56,6 +58,8 @@ public class ProductServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Product product = productService.findById(id);
                 request.setAttribute("product", product);
+                Category category = categoryService.findCategoryByProductId(id);
+                request.setAttribute("category", category);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/product/view.jsp");
                 dispatcher.forward(request, response);
                 break;

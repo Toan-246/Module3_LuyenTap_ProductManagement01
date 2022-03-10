@@ -2,6 +2,7 @@ package com.codegym.dao.category;
 
 import com.codegym.dao.DBConnection;
 import com.codegym.model.Category;
+import com.codegym.model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -87,4 +88,21 @@ public class CategoryDao implements ICategoryDao {
         return false;
     }
 
+    @Override
+    public Category findCategoryByProductId(int id) {
+        Category category = new Category();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select C.id, C.name from product P join category C on P.category_id = C.id where p.id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int cId = rs.getInt("id");
+                String name = rs.getString("name");
+                category = new Category(cId, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return category;
+    }
 }

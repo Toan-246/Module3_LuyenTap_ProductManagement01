@@ -39,4 +39,8 @@ public class CategoryService implements ICategoryService{
     }
 
 
+    @Override
+    public Category findCategoryByProductId(int id) {
+        return categoryDao.findCategoryByProductId(id);
+    }
 }
